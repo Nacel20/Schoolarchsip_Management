@@ -1,0 +1,50 @@
+﻿@model SchoolarshipManagement.Models.ViewModels.CityVM
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var title = "City Detail";
+}
+<div class="row">
+    <div class="col-6">
+        <h2 class="text-primary">@title </h2>
+    </div>
+    <div class="col-6 text-right">
+        <a class="btn btn-primary" asp-action="Index"><i class="fas fa-plus"></i> &nbsp; Back to List</a>
+    </div>
+</div>
+
+<form method="post" enctype="multipart/form-data">
+    <div class="row p-3 border">       
+        <div class="col-8 pt-4">
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="City.Code">Code</label>
+                </div>
+                <div class="col-8">
+                    <input readonly asp-for="City.Code" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="City.Name">Name</label>
+                </div>
+                <div class="col-8">
+                    <input readonly asp-for="City.Name" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    Country
+                </div>
+                <div class="col-8">
+                    @Html.DropDownListFor(m => m.City.CountryId, Model.CountryList, "-Select a Country",
+                   new { @class = "form-control" })
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

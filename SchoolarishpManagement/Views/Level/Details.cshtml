@@ -1,0 +1,40 @@
+﻿@model SchoolarshipManagement.Models.Models.Level
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var title = "Level Detail";
+}
+
+<div class="row">
+    <div class="col-6">
+        <h2 class="text-primary">@title </h2>
+    </div>
+    <div class="col-6 text-right">
+        <a class="btn btn-primary" asp-action="Index"><i class="fas fa-plus"></i> &nbsp; Back to List</a>
+    </div>
+</div>
+
+<form method="post">
+    <div class="row p-3 border">
+        <div class="col-8 pt-4">
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Name">Level Name</label>
+                </div>
+                <div class="col-8">
+                    <input readonly asp-for="Name" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Description">Full Description</label>
+                </div>
+                <div class="col-8">
+                    <input readonly asp-for="Description" class="form-control" />
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+        </div>
+    </div>
+</form>

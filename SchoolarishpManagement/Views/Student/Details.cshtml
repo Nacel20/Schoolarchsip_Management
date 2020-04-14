@@ -1,0 +1,136 @@
+﻿@model SchoolarshipManagement.Models.ViewModels.StudentVM
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var title = "Student Detail";
+}
+
+    <div class="row">
+        <div class="col-6">
+            <h2 class="text-primary">@title </h2>
+        </div>
+        <div class="col-6 text-right">
+            <a class="btn btn-primary" asp-action="Index"><i class="fas fa-plus"></i> &nbsp; Back to List</a>
+        </div>
+    </div>
+
+<form method="post" enctype="multipart/form-data">
+    <div class="row p-3 border">
+        <div class="col-8 pt-4">
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Student.FirstName">First Name</label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Student.FirstName" class="form-control" readonly />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Student.LastName">Last Name</label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Student.LastName" class="form-control" readonly />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Student.Email"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Student.Email" class="form-control" readonly />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Student.Address">Complete Address</label>
+                </div>
+                <div class="col-8">
+                    <textarea asp-for="Student.Address" class="form-control"></textarea>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    Gender
+                </div>
+                <div class="col-8">
+                    @Html.DropDownListFor(m => m.Student.GenderId, Model.GenderList, "-Select a Gender",
+                   new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    Country
+                </div>
+                <div class="col-8">
+                    @Html.DropDownListFor(m => m.Student.CountryId, Model.CountryList, "-Select a Country",
+                   new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    City
+                </div>
+                <div class="col-8">
+                    @Html.DropDownListFor(m => m.Student.CityId, Model.CityList, "-Select a City",
+                   new { @class = "form-control"})
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Student.Age"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Student.Age" class="form-control" readonly />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Student.PhoneNumber">Phone Number</label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Student.PhoneNumber" class="form-control" readonly />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    Student Image (4 x 4)
+                </div>
+                <div class="col-8">
+                    <input type="file" name="files" id="uploadBox" multiple class="form-control" readonly />
+                </div>
+            </div>
+        </div>
+        @if (Model.Student.Id != 0)
+        {
+            <div class="col-3 offset-1 pt-4">
+                <img src="@Model.Student.ImageUrl" width="100%" style="border-radius:5px; border:1px solid #bbb9b9" />
+            </div>
+        }
+    </div>
+</form>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+    <script src="https://cdn.tiny.cloud/1/n94ifuzvl80pchikopiwgz2esrw8n28dwcywvpejlqrregfp/tinymce/5/tinymce.min.js"></script>
+    @*<script src="~/Scripts/jquery-1.10.2.js"></script>*@
+
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'lists',
+            menubar: 'file edit format'
+        });
+
+
+        function validateInput() {
+            if (document.getElementById("uploadBox").value == "") {
+                swal("Error", "Please select an image", "error");
+                return false;
+            }
+            return true;
+        };
+
+    </script>
+
+}
